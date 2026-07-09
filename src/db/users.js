@@ -2,7 +2,7 @@ export const users = [
     {
         login: 'ular',
         password: 'ular28',
-        tegLess: 'mou_1',
+        tegLess: 'mou_2',
         groupId: 'frontend_1',
     },
     {
