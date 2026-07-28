@@ -85,8 +85,8 @@ export const TaskS = () => {
                                         </div>
 
                                         <p>
-                                            Отметьте задание как выполненное,
-                                            когда закончите.
+                                            При клике "Отправить задание"
+                                            Задание автоматически отмечается как выполненым.
                                         </p>
                                     </div>
 
@@ -94,7 +94,6 @@ export const TaskS = () => {
 
                                         <button
 
-                                            onClick={() => addDone(t.id)}
                                             className={cls.done_toggle}
                                         >
                                             {isDone ? (
@@ -105,10 +104,12 @@ export const TaskS = () => {
 
                                             {isDone
                                                 ? "Выполнено"
-                                                : "Отметить выполненным"}
+                                                : "Не выполнено"}
                                         </button>
-
-                                        <button onClick={() => window.open('https://t.me/Merts228')} className={cls.button_send}>
+                                        <button onClick={() => {
+                                            addDone(t?.id);
+                                            window.open('https://t.me/Merts228')
+                                        }} className={cls.button_send}>
                                             <PiTelegramLogoLight />
                                             Отправить задание
                                         </button>

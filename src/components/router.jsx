@@ -7,6 +7,7 @@ import {MainList} from "../pages/MainPage/ui/MainList.jsx";
 import {ProfilePage} from "../pages/ProfilePage/ui/ProfilePage.jsx";
 import {LessonsPage} from "../pages/LessonsPage/ui/LessonsPage.jsx";
 import {TasksList} from "../pages/TasksPge/ui/TasksList.jsx";
+import {AboutMeList} from "../pages/AboutMePage/ui/AboutMeList.jsx";
 export const router = createBrowserRouter([
     {
         path: "/",
@@ -24,8 +25,8 @@ export const router = createBrowserRouter([
              element: <ProtectedRoute />,
              children: [
                  {
-                     path: "materials",
-                     element: <h1>materials</h1>
+                     path: "events",
+                     element: <h1>Events</h1>
                  },
                  {
                      path:'main', element: <MainList/>
@@ -45,6 +46,10 @@ export const router = createBrowserRouter([
                  {
                      path:'profile',
                      element: <ProfilePage/>
+                 },
+                 {
+                     path: 'about',
+                     element:<AboutMeList/>
                  }
              ]
             }

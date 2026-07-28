@@ -21,15 +21,22 @@ export const groups = {
         }
     },
     frontend_2: {
-        title: "Frontend 1 уровень",
+        title: "frontend_2",
         lessonsKey: "mou_2",
         lessons: {
             mou_2: [
-                { id: "nptJLs-zhOI", title: "Join me in Death" },
-                { id: "gybdNhbZKeI", title: "Рекетир" }
+                { id: 'Ry0__ddABMg', title:'Введение в адаптивную вёрстку часть-1.,\n' },
+                { id: '9ZX07EKEwfY', title: 'Адаптивная вёрстка часть-2.\n' + '\n' },
+                { id: 'VsnYxFFdPBw', title: 'Адаптивка инпуты\n' + '\n' },
+                { id: 'hID_Bde9PeE', title: 'Адаптивка' },
+                { id: 'URVMHup0Qpw', title: 'Ознакомление с JS' },
+                { id: 'ywjRaq_YGv4', title: 'JS' },
+                { id: 'A9lMN-Hr88Q', title: 'Циклы, массивы, структуры данных. Объекты в JavaScript\n' +
+                        '\n' },
+                { id: 'A9lMN-Hr88Q' , title: 'Функции. Анонимные функции. Замыкания. Колбеки\n' +
+                        '\n' },
             ]
         }
     }
-
 };
 

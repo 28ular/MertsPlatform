@@ -8,7 +8,7 @@ export const users = [
     {
         login: 'tima',
         password: 'tima123',
-        tegLess: 'mou_1',
+        tegLess: 'mou_2',
         groupId: 'frontend_2',
     } ,
     {

@@ -41,6 +41,10 @@ export const Login = () => {
                 navigate('/main');
             }, 3000)
         }else {
+            setSuccess(true);
+            setTimeout(() => {
+                setSuccess(false);
+            },2000)
             const notyEr = toast.error('Неверный: Пароль или Логин', {
                 autoClose: 2000
             })

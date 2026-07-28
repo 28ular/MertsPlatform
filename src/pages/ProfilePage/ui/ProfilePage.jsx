@@ -9,6 +9,8 @@ import {RiTelegram2Line} from "react-icons/ri";
 import {FaPeopleGroup} from "react-icons/fa6";
 import {useProfile} from "../../../store/useProfile.js";
 import {toast, ToastContainer} from "react-toastify";
+import {ProfileBanner} from "./ProfileBanner.jsx";
+import {Nothing} from "../../../components/Nothing.jsx";
 
 
 
@@ -44,13 +46,16 @@ export const ProfilePage = () => {
 
     return (
         <>
+
             <ToastContainer theme="dark"/>
+            <ProfileBanner/>
             <div className={cls.profile}>
                 <div className={cls.profile_info}>
+
                     <div className={cls.profile_infos} data-aos="fade-up">
                         <div
                             className={cls.profile_avatar}
-                            style={{     backgroundImage: `url(${profileUrlImg || localStorage.getItem('profileImgUrl')})`                        }}
+                            style={{     backgroundImage: `url(${profileUrlImg })` }}
                         >
                             <label className={cls.profiel_change}>
                                 выбрать фото
@@ -70,10 +75,10 @@ export const ProfilePage = () => {
                             </label>
                         </div>
                         <div className={cls.profile_statistic_info}>
-                            <h1>{userInfo?.login}</h1>
                             <div className={cls.profile_student}>
                                 Студент
                             </div>
+                            <h1>{userInfo?.login}</h1>
                         </div>
                         <div className={cls.profile_custom}>
                             <div className={cls.profile_custom_infos}>
@@ -109,18 +114,21 @@ export const ProfilePage = () => {
                                                       value={name}
                                                       onChange={e => setName(e.target.value)}
                                                       placeholder="username"
+                                                      maxLength="11"
                                                   />
                                                   <input
                                                       type="text"
                                                       value={tg}
                                                       onChange={e => setTg(e.target.value)}
                                                       placeholder="@tg"
+                                                      maxLength="11"
                                                   />
                                                   <input
                                                       type="text"
                                                       value={group}
                                                       onChange={e => setGroup(e.target.value)}
                                                       placeholder="group num..."
+                                                      maxLength="11"
                                                   />
                                               </div>
                                           </Modal>
@@ -132,7 +140,7 @@ export const ProfilePage = () => {
                     </div>
                 </div>
             </div>
-
+            <Nothing text="пока ничего..."/>
         </>
     )
 }

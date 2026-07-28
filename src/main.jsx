@@ -10,6 +10,11 @@ import "aos/dist/aos.css";
 const queryClient = new QueryClient()
 
 AOS.init({})
+
+if ("scrollRestoration" in window.history) {
+    window.history.scrollRestoration = "manual";
+    window.scrollX = 'behavior';
+}
 createRoot(document.getElementById('root')).render(
     <QueryClientProvider client={queryClient}>
         <RouterProvider router={router}/>

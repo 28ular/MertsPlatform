@@ -1,7 +1,7 @@
 
 
 import cls from '../../src/components/header.module.scss'
-import {FaHome, FaTasks,} from "react-icons/fa";
+import {FaHome, FaNewspaper, FaTasks,} from "react-icons/fa";
 import {FaBookOpenReader, FaCalendarDays} from "react-icons/fa6";
 import { FaRegMessage } from "react-icons/fa6";
 import {SiSimpleanalytics} from "react-icons/si";
@@ -40,9 +40,9 @@ export const Header = () => {
         },
         {
             id:5,
-            name: 'Материалы',
-            img: FaBookOpenReader,
-            path: 'materials'
+            name: 'События',
+            img: FaNewspaper ,
+            path: 'events'
         },
         {
             id:6,

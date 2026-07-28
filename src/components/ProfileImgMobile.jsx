@@ -5,7 +5,7 @@ export const ProfileImgMobile = () => {
     const { profileUrlImg } = useProfile()
 
     return (
-        <div className={cls.profile_mobile}    style={{     backgroundImage: `url(${profileUrlImg})`                        }}>
+        <div className={cls.profile_mobile}    style={{ backgroundImage: `url(${profileUrlImg})`                        }}>
 
         </div>
     )

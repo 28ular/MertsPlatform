@@ -11,12 +11,13 @@ body {
     color: #F1F5F9;
     text-decoration: none;
     overflow-x: hidden;
+    scroll-behavior: smooth;
 }
 
 
 :root {
     --bg: #030712;
-    --card: #111827;
+    --card: rgb(17, 24, 39);
     --primary: rgba(168, 85, 247, 0.72);
 
     --text: #F9FAFB;
