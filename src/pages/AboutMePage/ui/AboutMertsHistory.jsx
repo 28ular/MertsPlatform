@@ -49,7 +49,7 @@ export const AboutMertsHistory =  ({ history, approach }) => {
                                              style={{
                                             animationDelay: `${index * 1}s`,
                                         }}>
-                                            <FaRegUser/>
+                                        <h.imgs/>
                                         </div>
                                         <p className={hover ? cls.actives : ''} style={{
                                             animationDelay: `${index * 1}s`,

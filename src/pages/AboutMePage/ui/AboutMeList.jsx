@@ -2,24 +2,35 @@ import cls from '../styles/about.module.scss'
 import {AboutMeHeader} from "./AboutMeHeader.jsx";
 import {AboutMertsPlatform} from "./AboutMertsPlatform.jsx";
 import {AboutMertsHistory} from "./AboutMertsHistory.jsx";
+import {FaChalkboardTeacher} from "react-icons/fa";
+import {MdSchool} from "react-icons/md";
+import {GiLifeSupport} from "react-icons/gi";
+import {RiCodeView} from "react-icons/ri";
 
 export const AboutMeList = () => {
      const MyApproach = [
         {
             id: 1,
-            text: "Объясняю сложные темы простым и понятным языком."
+            text: "Объясняю сложные темы простым и понятным языком.",
+            imgs: FaChalkboardTeacher
+
         },
         {
             id: 2,
-            text: "Делаю упор на практику, чтобы знания закреплялись на реальных заданиях."
+            text: "Делаю упор на практику, чтобы знания закреплялись на реальных заданиях.",
+            imgs: MdSchool
+
         },
         {
             id: 3,
-            text: "Поддерживаю студентов и помогаю разобраться в сложных моментах."
+            text: "Поддерживаю студентов и помогаю разобраться в сложных моментах.",
+            imgs: GiLifeSupport
+
         },
         {
             id: 4,
-            text: "Постоянно развиваю MertsChat, добавляя новые возможности для обучения."
+            text: "Постоянно развиваю MertsChat, добавляя новые возможности для обучения.",
+            imgs: RiCodeView
         }
     ];
 

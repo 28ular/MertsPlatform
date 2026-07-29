@@ -8,6 +8,7 @@ import {ProfilePage} from "../pages/ProfilePage/ui/ProfilePage.jsx";
 import {LessonsPage} from "../pages/LessonsPage/ui/LessonsPage.jsx";
 import {TasksList} from "../pages/TasksPge/ui/TasksList.jsx";
 import {AboutMeList} from "../pages/AboutMePage/ui/AboutMeList.jsx";
+import {Nothing} from "./Nothing.jsx";
 export const router = createBrowserRouter([
     {
         path: "/",
@@ -37,7 +38,7 @@ export const router = createBrowserRouter([
                  },
                  {
                      path: 'results',
-                     element: <h1>results</h1>
+                     element: <Nothing/>
                  },
                  {
                      path: 'tasks',

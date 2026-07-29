@@ -167,6 +167,7 @@
                 padding: 20px;
                 margin-left: 40px;
                 width: 600px;
+                position: relative;
                 .right_infos {
                     p {
                         width: 300px;
@@ -201,6 +202,8 @@
                     }
                 }
                 .right_buttons {
+                    position: absolute;
+                    bottom: 0;
                     width: 100%;
                     margin-top: 54px;
                     display: flex;

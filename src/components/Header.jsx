@@ -1,5 +1,3 @@
-
-
 import cls from '../../src/components/header.module.scss'
 import {FaHome, FaNewspaper, FaTasks,} from "react-icons/fa";
 import {FaBookOpenReader, FaCalendarDays} from "react-icons/fa6";
@@ -8,36 +6,34 @@ import {SiSimpleanalytics} from "react-icons/si";
 import {useNavigate} from "react-router-dom";
 import {IoMdExit} from "react-icons/io";
 import {ProfileImgMobile} from "./ProfileImgMobile.jsx";
+import logo from '../images/logos.png'
+import {HiMiniQuestionMarkCircle} from "react-icons/hi2";
+
 
 export const Header = () => {
 
     const feutersItems = [
         {
-            id:1,
+            id:2,
             name: 'Главная',
             img: FaHome,
             path: 'main'
         },
         {
-            id:2,
+            id:3,
             name: 'Мои уроки',
             img: FaBookOpenReader,
             path: 'lessons'
 
         },
         {
-            id:3,
+            id:4,
             name: 'Задания',
             img: FaTasks,
             path: 'tasks'
 
         },
-        {
-            id:4,
-            name: 'Результаты',
-            img: SiSimpleanalytics,
-            path: 'results'
-        },
+
         {
             id:5,
             name: 'События',
@@ -64,6 +60,7 @@ export const Header = () => {
                 <div className={cls.header_items}>
                     <div className={cls.feuters}>
                        <div className={cls.feut_items}>
+
                            {
                                feutersItems?.map((i) => (
                                    <div key={i?.id} className={cls.feut_item} onClick={() => navigate(`/${i.path}`)}>
@@ -74,6 +71,12 @@ export const Header = () => {
                                    </div>
                                ))
                            }
+                               <div  className={cls.feut_item}>
+                                   <div className={cls.imgs}>
+                                       <HiMiniQuestionMarkCircle  className={cls.l}/>
+                                   </div>
+                                       <h4><a href="/docs/MertsPlatform_Инструкция.docx" download>Инструкция</a></h4>
+                               </div>
                        </div>
                         <div className={cls.header_footer}>
                            <div className={cls.support}>
