@@ -20,23 +20,6 @@
         display: flex;
         align-items: center;
         padding: 10px;
-        .not_active {
-            background: green;
-            width: 200px;
-            height: 60px;
-            border: none;
-            border-radius: 10px;
-            font-size: 21px;
-            font-weight: bold;
-            transition: all  0.7s;
-            color: var(--text);
-
-            &:hover {
-                background: var(--primary);
-                cursor: pointer;
-                color: #000;
-            }
-        }
         .active_btn {
             width: 200px;
             height: 60px;

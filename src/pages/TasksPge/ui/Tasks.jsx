@@ -8,7 +8,7 @@ import { useDone } from "../../../store/DoneStore.js";
 import {useState} from "react";
 import {IoLogoCss3, IoLogoJavascript} from "react-icons/io";
 
-export const dTaskS = () => {
+export const TaskS = () => {
 
     const { userInfo } = useFindUser();
 
@@ -30,7 +30,8 @@ export const dTaskS = () => {
                 </div>
 
                 <div className={cls.search}>
-                    <button onClick={() => setActive(prev => !prev)} className={active ? cls.active_btn : cls.not_active}>Все задания</button>
+                    {/*onClick={() => setActive(prev => !prev)} className={active ? cls.active_btn : cls.not_active}*/}
+                    <button className={cls.active_btn}>Все задания</button>
                 </div>
 
                 <div className={cls.task_items}>
