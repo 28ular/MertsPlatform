@@ -6,6 +6,12 @@ export const users = [
         groupId: 'frontend_2',
     },
     {
+      login:'Anton',
+      password:'Daniel',
+      tegLess: "mou_1",
+      groupId: 'frontend_1',
+    },
+    {
         login: 'tima',
         password: 'tima123',
         tegLess: 'mou_2',
