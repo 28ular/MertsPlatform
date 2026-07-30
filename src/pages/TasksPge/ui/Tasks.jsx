@@ -8,7 +8,7 @@ import { useDone } from "../../../store/DoneStore.js";
 import {useState} from "react";
 import {IoLogoCss3, IoLogoJavascript} from "react-icons/io";
 
-export const TaskS = () => {
+export const dTaskS = () => {
 
     const { userInfo } = useFindUser();
 
