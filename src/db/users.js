@@ -12,6 +12,12 @@ export const users = [
       groupId: 'frontend_1',
     },
     {
+      login:'Cup',
+      password:'Head',
+      tegLess: "mou_1",
+      groupId: 'frontend_1',
+    },
+    {
         login: 'tima',
         password: 'tima123',
         tegLess: 'mou_2',
