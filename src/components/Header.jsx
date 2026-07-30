@@ -75,7 +75,7 @@ export const Header = () => {
                                    <div className={cls.imgs}>
                                        <HiMiniQuestionMarkCircle  className={cls.l}/>
                                    </div>
-                                       <h4><a href="/docs/MertsPlatform_Инструкция.docx" download>Инструкция</a></h4>
+                                       <h4><a href="/docs/MertsPlatform_Инструкция%20(14).docx" download>Инструкция</a></h4>
                                </div>
                        </div>
                         <div className={cls.header_footer}>

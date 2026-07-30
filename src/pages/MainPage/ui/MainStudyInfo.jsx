@@ -23,7 +23,7 @@ export const MainStudyInfo = () => {
                             </div>
                             <div className={cls.continue_footer}>
                                 <p>Обязательно ознакомьтесь с инструкцией перед началом обучения, чтобы всё было максимально понятно и эффективно.</p>
-                                <a href="/docs/MertsPlatform_Инструкция.docx" download>
+                                <a href="/docs/MertsPlatform_Инструкция%20(14).docx" download>
                                     <button><FaBook /> Ознакомиться с инструкцией <FaArrowRight /></button>
                                 </a>
                             </div>

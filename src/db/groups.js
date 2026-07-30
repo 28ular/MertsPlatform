@@ -1,5 +1,4 @@
 export const groups = {
-
     frontend_1: {
         title: "Frontend 1 уровень",
         lessonsKey: "mou_1",
