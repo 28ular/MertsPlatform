@@ -4,17 +4,13 @@
     overflow: hidden;
     transition: width 0.5s ease;
     background: var(--card);
-
     &:hover {
         width: 320px;
     }
     z-index: 1000;
 
     position: fixed;
-
 }
-
-
 .header_items {
     display: flex;
     flex-direction: column;
@@ -27,7 +23,7 @@
 .feut_items {
     display: flex;
     flex-direction: column;
-    gap: 25px;
+    gap: 18px;
     margin-top: 67px;
 }
 

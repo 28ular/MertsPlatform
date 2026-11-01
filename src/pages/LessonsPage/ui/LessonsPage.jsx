@@ -6,14 +6,11 @@ export const LessonsPage = () => {
 
     return (
         <>
-
         <div className={cls.lessons}>
             <div className={cls.lessons_container}>
                 <LessonVideos />
             </div>
         </div>
-
-
         </>
     )
 

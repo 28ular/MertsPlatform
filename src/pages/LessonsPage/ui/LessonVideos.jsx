@@ -21,7 +21,6 @@ export const LessonVideos = () => {
 
     return (
         <>
-
         <div className={cls.videos}>
             <div className={cls.title}>
                 <div className={cls.less_title}>
@@ -48,8 +47,6 @@ export const LessonVideos = () => {
                 </button>
             </div>
         </div>
-
-
         </>
     )
 }

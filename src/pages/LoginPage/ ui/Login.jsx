@@ -1,94 +1,129 @@
-import cls from '../../../../src/pages/LoginPage/loginStyles/login.module.scss'
-import {useNavigate} from "react-router-dom";
-import {useState} from "react";
-import {toast, ToastContainer} from "react-toastify";
-import {users} from "../../../db/users.js";
-import {useFindUser} from "../../../store/userStore.js";
-import {IoEyeSharp} from "react-icons/io5";
-import {FaEyeSlash} from "react-icons/fa";
-
+import cls from "../../../../src/pages/LoginPage/loginStyles/login.module.scss";
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { toast, ToastContainer } from "react-toastify";
+import { users } from "../../../db/users.js";
+import { useFindUser } from "../../../store/userStore.js";
+import { IoEyeSharp } from "react-icons/io5";
+import { FaEyeSlash } from "react-icons/fa";
 
 export const Login = () => {
+  const navigate = useNavigate();
 
-    const navigate = useNavigate();
+  const [modalAuth, setModalAuth] = useState(false);
 
-    const  { addUser } = useFindUser();
-    const [login , setLogin] = useState('');
-    const [passwords, setPasswords] = useState('');
-    const [togglePassword, setTogglePassword] = useState(false);
-    const [success, setSuccess] = useState(false);
+  const { addUser } = useFindUser();
+  const [login, setLogin] = useState("");
+  const [passwords, setPasswords] = useState("");
+  const [togglePassword, setTogglePassword] = useState(false);
+  const [success, setSuccess] = useState(false);
+  const verifyClick = () => {
+    const user = users.find(
+      (user) =>
+        user.login === login.trim() && user.password === passwords.trim(),
+    );
 
-    const verifyClick = () => {
-
-        const user = users.find(user => user.login === login.trim() && user.password === passwords.trim())
-
-        if ( login.trim() === '' || passwords.trim() === '' ) {
-            const noty = toast.warning('Заполните Все поля!')
-            return;
-        }
-        if ( user ) {
-            setSuccess(true);
-            addUser(user);
-            const notyLoa = toast.loading('Загрузка данных', {
-                autoClose: 1500
-            })
-            setTimeout(() => {
-                const notySu = toast.success('Успешно!', {
-                    autoClose: 900
-                })
-            },1600)
-            setTimeout(() => {
-                navigate('/main');
-            }, 3000)
-        }else {
-            setSuccess(true);
-            setTimeout(() => {
-                setSuccess(false);
-            },2000)
-            const notyEr = toast.error('Неверный: Пароль или Логин', {
-                autoClose: 2000
-            })
-            setTimeout(() => {
-                const notyWa = toast.warning('Попробуйте снова', {
-                    autoClose: 1000,
-                })
-            }, 2100)
-            return;
-        }
-
+    if (login.trim() === "" || passwords.trim() === "") {
+      const noty = toast.warning("Заполните Все поля!");
+      return;
     }
 
-    return (
-        <>
-            <ToastContainer theme="dark"/>
-            <div className={cls.wrapper} data-aos="zoom-in" data-aos-duration="800">
-            <div className={cls.login_items}>
-                <h1>Добро пожаловать 👋</h1>
-                <p>Войдите в свой аккаунт</p>
-                <div className={cls.login_item}>
-                    <input
-                        type="text"
-                        placeholder="Логин"
-                        value={login}
-                        onChange={(e) => setLogin(e.target.value)}
-                    />
-                    <div className={cls.pass_input}>
-                        <input
-                            type={togglePassword ? 'text' : 'password'}
-                            placeholder="Пароль"
-                            value={passwords}
-                            onChange={(e) => setPasswords(e.target.value)}
-                        />
-                        <div className={cls.pass_toggle} onClick={() => setTogglePassword(prev => !prev)}>
-                            { togglePassword ? <FaEyeSlash /> : <IoEyeSharp />}
-                        </div>
-                    </div>
-                    <button disabled={success === true} onClick={verifyClick}>
-                        Войти
-                    </button>
+    if (user) {
+      setSuccess(true);
+      addUser(user);
+      const notyLoa = toast.loading("Загрузка данных", {
+        autoClose: 1500,
+      });
+      setTimeout(() => {
+        const notySu = toast.success("Успешно!", {
+          autoClose: 900,
+        });
+      }, 1600);
+      setTimeout(() => {
+        navigate("/main");
+      }, 3000);
+    } else {
+      setSuccess(true);
+      setTimeout(() => {
+        setSuccess(false);
+      }, 2000);
+      const notyEr = toast.error("Неверный: Пароль или Логин", {
+        autoClose: 2000,
+      });
+      setTimeout(() => {
+        const notyWa = toast.warning("Попробуйте снова", {
+          autoClose: 1000,
+        });
+      }, 2100);
+      return;
+    }
+  };
+
+  return (
+    <>
+      <ToastContainer theme="dark" />
+      <div className={cls.wrapper}>
+        <div
+          className={cls.login_items_left}
+          data-aos="fade-right"
+          data-aos-duration="700"
+        >
+          <div className={cls.banner}></div>
+        </div>
+        <div
+          className={cls.login_items}
+          data-aos="fade-left"
+          data-aos-duration="700"
+        >
+          {modalAuth === false ? (
+            <>
+              <h1>Добро пожаловать 👋</h1>
+              <p>Войдите в свой аккаунт</p>
+              <div className={cls.login_item}>
+                <input
+                  type="text"
+                  placeholder="Логин"
+                  value={login}
+                  onChange={(e) => setLogin(e.target.value)}
+                />
+                <div className={cls.pass_input}>
+                  <input
+                    type={togglePassword ? "text" : "password"}
+                    placeholder="Пароль"
+                    value={passwords}
+                    onChange={(e) => setPasswords(e.target.value)}
+                  />
+                  <div
+                    className={cls.pass_toggle}
+                    onClick={() => setTogglePassword((prev) => !prev)}
+                  >
+                    {togglePassword ? <FaEyeSlash /> : <IoEyeSharp />}
+                  </div>
                 </div>
-            </div>
-            </div>
-        </>
-    )
-}
+                <button disabled={success === true} onClick={verifyClick}>
+                  Войти
+                </button>
+              </div>
+            </>
+          ) : (
+            <div>бр патапом</div>
+          )}
+          <div className={cls.dontH}>
+            <hr />
+            <p>
+              {modalAuth ? (
+                <>
+                  Уже есть аккаунт? <span onClick={() => setModalAuth(false)}>Войти</span>
+                </>
+              ) : (
+                <>
+                  Нет аккаунта? <span onClick={() => setModalAuth(true)}>Создать</span>
+                </>
+              )}
+            </p>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+};

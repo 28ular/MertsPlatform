@@ -5,8 +5,8 @@ import { IoCheckmarkDoneCircleOutline, IoEyeSharp } from "react-icons/io5";
 import { PiTelegramLogoLight } from "react-icons/pi";
 import {FaHtml5, FaRegCircle} from "react-icons/fa";
 import { useDone } from "../../../store/DoneStore.js";
-import {useState} from "react";
 import {IoLogoCss3, IoLogoJavascript} from "react-icons/io";
+import {useState} from "react";
 
 export const TaskS = () => {
 
@@ -16,11 +16,12 @@ export const TaskS = () => {
 
     const { doneTask, addDone } = useDone();
 
+    const [modal, setModal] = useState(false);
+
     console.log(data.length);
 
     console.log(doneTask.length);
 
-    const [active, setActive] = useState(false);
 
     return (
         <>
@@ -45,7 +46,6 @@ export const TaskS = () => {
                                 className={`${cls.task_item} ${isDone ? cls.done : ''} `}
                                 data-aos="fade-up"
                             >
-
                                 <div className={cls.task_left}>
                                     <div
                                         className={cls.img}
@@ -107,7 +107,7 @@ export const TaskS = () => {
                                                 ? "Выполнено"
                                                 : "Не выполнено"}
                                         </button>
-                                        <button onClick={() => {
+                                        <button   onClick={() => {
                                             addDone(t?.id);
                                             window.open('https://t.me/Merts228')
                                         }} className={cls.button_send}>
@@ -123,6 +123,9 @@ export const TaskS = () => {
                     })}
                 </div>
             </div>
+            {modal && alert('worked')
+            }
         </>
     );
 };
+

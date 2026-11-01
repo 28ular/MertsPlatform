@@ -8,13 +8,13 @@ export const users = [
     {
       login:'Anton',
       password:'Daniel',
-      tegLess: "mou_1",
-      groupId: 'frontend_1',
+      tegLess: "mou_2",
+      groupId: 'f48_2',
     },
     {
       login:'Cup',
       password:'Head',
-      tegLess: "mou_1",
+      tegLess: "mou_2",
       groupId: 'frontend_1',
     },
     {
@@ -40,5 +40,5 @@ export const users = [
         password: 'Abbas1488',
         tegLess: 'mou_1',
         groupId: 'frontend_1',
-    }
+    },
 ]

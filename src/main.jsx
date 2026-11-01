@@ -6,7 +6,6 @@ import {router} from "./components/router.jsx";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
-
 const queryClient = new QueryClient()
 
 AOS.init({})

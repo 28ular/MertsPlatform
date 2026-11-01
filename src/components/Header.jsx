@@ -1,12 +1,10 @@
 import cls from '../../src/components/header.module.scss'
 import {FaHome, FaNewspaper, FaTasks,} from "react-icons/fa";
-import {FaBookOpenReader, FaCalendarDays} from "react-icons/fa6";
+import {FaBookOpenReader} from "react-icons/fa6";
 import { FaRegMessage } from "react-icons/fa6";
-import {SiSimpleanalytics} from "react-icons/si";
 import {useNavigate} from "react-router-dom";
 import {IoMdExit} from "react-icons/io";
 import {ProfileImgMobile} from "./ProfileImgMobile.jsx";
-import logo from '../images/logos.png'
 import {HiMiniQuestionMarkCircle} from "react-icons/hi2";
 
 

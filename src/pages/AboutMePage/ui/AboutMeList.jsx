@@ -29,7 +29,7 @@ export const AboutMeList = () => {
         },
         {
             id: 4,
-            text: "Постоянно развиваю MertsChat, добавляя новые возможности для обучения.",
+            text: "Постоянно развиваю MertsPlatform, добавляя новые возможности для обучения.",
             imgs: RiCodeView
         }
     ];
@@ -47,7 +47,6 @@ export const AboutMeList = () => {
 
     return (
         <>
-
             <div className={cls.about}>
                 <div className={cls.about_container}>
                     <AboutMeHeader/>
@@ -55,7 +54,6 @@ export const AboutMeList = () => {
                     <AboutMertsHistory history={AboutInfo} approach={MyApproach}/>
                 </div>
             </div>
-
         </>
     )
 }

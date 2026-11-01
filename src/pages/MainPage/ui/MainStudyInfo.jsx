@@ -5,7 +5,6 @@ import {FaArrowRight, FaBook} from "react-icons/fa";
 import {useFindUser} from "../../../store/userStore.js";
 import {useNavigate} from "react-router-dom";
 
-
 export const MainStudyInfo = () => {
 
     const {userInfo} = useFindUser()
@@ -29,7 +28,6 @@ export const MainStudyInfo = () => {
                             </div>
                         </div>
                     </div>
-
                     <div className={cls.team} >
                         <div className={cls.team_content}>
                             <div className={cls.team_title}>
@@ -41,7 +39,6 @@ export const MainStudyInfo = () => {
                         </div>
                         <div className={cls.imgUlars} style={{backgroundImage: `url(${imgs})`}}></div>
                     </div>
-
                 </div>
             </div>
         </>

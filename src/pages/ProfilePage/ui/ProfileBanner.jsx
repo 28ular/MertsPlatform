@@ -3,12 +3,11 @@ import {useProfile} from "../../../store/useProfile.js";
 
 
 export const ProfileBanner = () => {
-
+    
     const  { bannerUrlImg, addBannerUrlImg } = useProfile();
 
     return (
         <>
-
             <div className={cls.banner} data-aos="zoom-in" style={{ backgroundImage: `url(${bannerUrlImg})` }}>
                 <label className={cls.banner_btn}>
                     Изменить обложку
@@ -27,8 +26,6 @@ export const ProfileBanner = () => {
                     }}/>
                 </label>
             </div>
-
-
         </>
     )
 }

@@ -3,8 +3,7 @@ import {useFindUser} from "../../../store/userStore.js";
 import {MdEdit} from "react-icons/md";
 import { Button, Modal } from 'antd';
 import {useState} from "react";
-import {CiUser} from "react-icons/ci";
-import {FaTelegram, FaUser} from "react-icons/fa";
+import { FaUser} from "react-icons/fa";
 import {RiTelegram2Line} from "react-icons/ri";
 import {FaPeopleGroup} from "react-icons/fa6";
 import {useProfile} from "../../../store/useProfile.js";
@@ -46,7 +45,6 @@ export const ProfilePage = () => {
 
     return (
         <>
-
             <ToastContainer theme="dark"/>
             <ProfileBanner/>
             <div className={cls.profile}>
@@ -140,7 +138,7 @@ export const ProfilePage = () => {
                     </div>
                 </div>
             </div>
-            <Nothing text="пока ничего..."/>
+            <Nothing />
         </>
     )
 }
