@@ -1,6 +1,6 @@
-import {create} from "zustand";
+import { create } from "zustand";
 
 export const useTaskModal = create((set) => ({
-    modalStatus: false ,
-    toggleStatus: set()
-}))
+  modalStatus: false,
+  toggleStatus: set(),
+}));

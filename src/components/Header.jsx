@@ -6,6 +6,8 @@ import {useNavigate} from "react-router-dom";
 import {IoMdExit} from "react-icons/io";
 import {ProfileImgMobile} from "./ProfileImgMobile.jsx";
 import {HiMiniQuestionMarkCircle} from "react-icons/hi2";
+import { logout } from '../../api/logout.js';
+import { toast } from 'react-toastify';
 
 
 export const Header = () => {
@@ -46,9 +48,13 @@ export const Header = () => {
         },
     ]
 
-    const exit = () => {
-        navigate('/auth')
-        localStorage.removeItem('user-merts-chat');
+    const Handlelogout = async () => {
+        try {
+            await logout();
+            navigate('/auth', { replace: true });
+        }catch (error) {
+            const noty = toast.error('Не удалось выйти из системы. Попробуйте еще раз.', )
+        }
     }
     const navigate = useNavigate();
     return (
@@ -82,7 +88,7 @@ export const Header = () => {
                                   <h4 onClick={() => window.location.href = 'https://t.me/Merts228'}>Нужна помощь?</h4>
                            </div>
                            <div className={cls.exit}>
-                               <div className={cls.exit_item} onClick={exit}>
+                               <div className={cls.exit_item} onClick={Handlelogout}>
                                    <IoMdExit className={cls.supp_img} />
                                    Выйти
                                </div>

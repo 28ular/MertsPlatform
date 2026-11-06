@@ -2,22 +2,20 @@ import cls from '../../../../src/pages/MainPage/styles/main.module.scss'
 import img from '../../../images/mainpageImg.webp'
 import imgs from '../../../images/ularsImg.webp'
 import {FaArrowRight, FaBook} from "react-icons/fa";
-import {useFindUser} from "../../../store/userStore.js";
 import {useNavigate} from "react-router-dom";
 
-export const MainStudyInfo = () => {
+export const MainStudyInfo = ({name}) => {
 
-    const {userInfo} = useFindUser()
 
     const navigate = useNavigate();
     return (
         <>
-            <div className={cls.mainStudyInfo}>
+            <div  className={cls.mainStudyInfo}>
                 <div className={cls.mainStudyInfo_items}>
                     <div  className={cls.continue}  style={{backgroundImage: `url(${img})`}}>
                         <div className={cls.continue_content} >
                             <div className={cls.continue_title}>
-                                <h2>Дорогой <span>{userInfo?.login}</span>!</h2>
+                                <h2>Дорогой <span>{name}</span>!</h2>
                                 <p>Добро пожаловать в MertsPlatform</p>
                             </div>
                             <div className={cls.continue_footer}>
