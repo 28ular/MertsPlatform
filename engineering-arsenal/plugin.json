@@ -1,0 +1,20 @@
+{
+  "name": "engineering-arsenal",
+  "version": "1.0.0",
+  "description": "Comprehensive engineering AI skills & methodologies: Superpowers, Karpathy minimalism, Matt Pocock TypeScript, Taste UI/UX, Archify, Impeccable, Gstack, Caveman, Headroom, GSD, and BMAD.",
+  "author": "Antigravity Engineering",
+  "skills": [
+    "superpowers",
+    "karpathy",
+    "agent-skills",
+    "matt-pocock",
+    "taste",
+    "archify",
+    "impeccable",
+    "gstack",
+    "caveman",
+    "headroom",
+    "gsd",
+    "bmad"
+  ]
+}

@@ -1,13 +1,11 @@
 import cls from '../../../../src/pages/ProfilePage/styles/profile.module.scss'
-import {useFindUser} from "../../../store/userStore.js";
 import {MdEdit} from "react-icons/md";
-import { Button, Modal } from 'antd';
+import { Modal } from 'antd';
 import {useState} from "react";
 import { FaUser} from "react-icons/fa";
 import {RiTelegram2Line} from "react-icons/ri";
 import {FaPeopleGroup} from "react-icons/fa6";
 import {useProfile} from "../../../store/useProfile.js";
-import {toast, ToastContainer} from "react-toastify";
 import {ProfileBanner} from "./ProfileBanner.jsx";
 import {Nothing} from "../../../components/Nothing.jsx";
 
@@ -45,7 +43,6 @@ export const ProfilePage = () => {
 
     return (
         <>
-            <ToastContainer theme="dark"/>
             <ProfileBanner/>
             <div className={cls.profile}>
                 <div className={cls.profile_info}>

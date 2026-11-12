@@ -5,6 +5,7 @@ import { RouterProvider } from "react-router-dom";
 import { router } from "./components/router.jsx";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import { ToastContainer } from "react-toastify";
 
 export const queryClient = new QueryClient();
 
@@ -16,6 +17,7 @@ if ("scrollRestoration" in window.history) {
 }
 createRoot(document.getElementById("root")).render(
   <>
+   <ToastContainer theme="dark"/>
     <QueryClientProvider client={queryClient}>
       <RouterProvider router={router} />
     </QueryClientProvider>

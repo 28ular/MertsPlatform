@@ -1,9 +1,8 @@
 import { useState } from "react";
 import cls from "../styles/lessons.module.scss";
-// import { groups } from "../../../db/groups.js";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
-import { useLess } from "../../../hooks/useLess.js";
 import { Loader } from "../../../components/Loader.jsx";
+import { useLess } from "../../../hooks/useLess.js";
 
 export const LessonVideos = () => {
   // const group = groups[userInfo.groupId];
@@ -12,13 +11,15 @@ export const LessonVideos = () => {
 
   const [index, setIndex] = useState(0);
 
-  const { data: lessons = [], isPending, isError, error } = useLess();
+  const { data: lessons = [], isPending, isError,  } = useLess();
 
   if (isPending) return <Loader />;
 
   const currentLesson = lessons[index];
 
   if (lessons.length === 0) return <p>нету уроков</p>;
+  if (isError) return <p>Упс ошибка!</p>
+
 
   return (
     <>

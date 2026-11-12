@@ -5,7 +5,7 @@ export const useMe = () => {
   return useQuery({
     queryKey: ["me"],
     queryFn: getMe,
-    staleTime: 1000 * 60 * 5,
+    staleTime: 1000 * 60 * 60,
     retry: 1,
   });
 };

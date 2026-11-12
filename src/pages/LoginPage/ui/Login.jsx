@@ -1,11 +1,12 @@
 import cls from "../../../../src/pages/LoginPage/loginStyles/login.module.scss";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { toast, ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 import { IoEyeSharp } from "react-icons/io5";
 import { FaEyeSlash } from "react-icons/fa";
 import { Spin } from "antd";
 import { loginUser } from "../../../../api/loginApi.js";
+import { registerUser } from "../../../../api/RegisterApi.js";
 
 export const Login = () => {
   const navigate = useNavigate();
@@ -48,9 +49,33 @@ export const Login = () => {
     },
   };
 
+  const [loginRegister, setLoginRegister] = useState('');
+  const [passRegister, setPassRegister] = useState('');
+  const [numberGroup, setNumberGroup] = useState('');
+
+
+  const HandleChangeRegister = async(e) => {
+    e.preventDefault();
+
+     if (!loginRegister.trim() || !passRegister.trim() || !numberGroup.trim()) {
+      toast.warning("Пожалуйста, заполните все поля");
+      return;
+    }
+
+    setLoading(true)
+    try {
+      await registerUser(loginRegister,passRegister,numberGroup)
+      navigate('/main')
+    }catch(e) {
+     const nots =  toast.error(e.message)
+    }finally {
+      setLoading(false);
+    }
+
+  }
+
   return (
     <>
-      <ToastContainer theme="dark" />
       <div className={cls.wrapper}>
         <div
           className={cls.login_items_left}
@@ -71,7 +96,7 @@ export const Login = () => {
                 data-aos={"zoom-in"}
                 data-aos-duration="600"
               >
-                Добро пожаловать 👋
+                Добро пожаловать 
               </h1>
               <p
                 data-aos="fade-up"
@@ -143,29 +168,48 @@ export const Login = () => {
                   data-aos-delay="200"
                   data-aos-duration="500"
                   type="text"
-                  placeholder="Login"
+                  placeholder="Логин"
+                  value={loginRegister}
+                  onChange={(e) => setLoginRegister(e.target.value)}
                 />
                 <input
                   data-aos="fade-down"
                   data-aos-delay="300"
                   data-aos-duration="500"
                   type="text"
-                  placeholder="Password"
+                  placeholder="Пароль"
+                  value={passRegister}
+                  onChange={(e) => setPassRegister(e.target.value)}
                 />
                 <input
                   data-aos="fade-down"
                   data-aos-delay="400"
                   data-aos-duration="600"
                   type="text"
-                  placeholder="Repeat Password"
+                  placeholder="Номер группы"
+                  value={numberGroup}
+                  onChange={(e) => setNumberGroup(e.target.value)}
                 />
 
                 <button
                   data-aos="fade-down"
                   data-aos-delay="500"
                   data-aos-duration="700"
+                  onClick={HandleChangeRegister}
+                  type="button"
+                  disabled={loading}
                 >
-                  Зарегистрирвоаться
+                  Зарегистрирвоаться 
+                      {loading && (
+                    <>
+                      ...
+                      <Spin
+                        styles={stylesFn}
+                        style={{ marginLeft: "10px" }}
+                        size="small"
+                      />
+                    </>
+                  )}
                 </button>
               </div>
             </div>
