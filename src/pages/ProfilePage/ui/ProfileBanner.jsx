@@ -1,32 +1,53 @@
+import { useState } from "react";
+import { uploadBanner } from "../../../../api/sendProfile.js";
 import cls from "../styles/profile.module.scss";
-import { useProfile } from "../../../store/useProfile.js";
+import { Spin } from "antd";
 
-export const ProfileBanner = () => {
-  const { bannerUrlImg, addBannerUrlImg } = useProfile();
+export const ProfileBanner = ({ banner, refetch }) => {
+  const [loading, setLoading] = useState(false);
+  const apiOrigin = new URL(import.meta.env.VITE_API_URL).origin;
+  const bannerSrc = banner?.startsWith("/")
+    ? `${apiOrigin}${banner}`
+    : banner || "";
 
+  const stylesFn = {
+    indicator: {
+      color: "#8b5cf6",
+    },
+  };
   return (
     <>
       <div
         className={cls.banner}
         data-aos="zoom-in"
-        style={{ backgroundImage: `url(${bannerUrlImg})` }}
+        style={{ backgroundImage: `url(${bannerSrc})` }}
       >
         <label className={cls.banner_btn}>
-          Изменить обложку
+          {loading ? (
+            <>
+              <p>Загрузка баннера </p>
+              <Spin
+                styles={stylesFn}
+                style={{ marginLeft: "10px" }}
+                size="small"
+              />
+            </>
+          ) : (
+            "Изменить обложку"
+          )}
           <input
             type="file"
             accept="image/*"
-            onChange={(e) => {
+            onChange={async (e) => {
               const file = e.target.files[0];
-              const reader = new FileReader();
-
-              reader.onload = () => {
-                const base64 = reader.result;
-
-                addBannerUrlImg(base64);
-              };
-
-              reader.readAsDataURL(file);
+              if (!file) return;
+              setLoading(true);
+              try {
+                await uploadBanner(file);
+                await refetch?.();
+              } finally {
+                setLoading(false);
+              }
             }}
           />
         </label>

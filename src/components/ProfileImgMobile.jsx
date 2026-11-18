@@ -1,11 +1,13 @@
 import cls from "../../src/pages/ProfilePage/styles/profile.module.scss";
-import { useProfile } from "../store/useProfile.js";
+import { useMe } from "../hooks/useMe.js";
 export const ProfileImgMobile = () => {
-  const { profileUrlImg } = useProfile();
+
+  const { data } =useMe();
+
   return (
     <div
       className={cls.profile_mobile}
-      style={{ backgroundImage: `url(${profileUrlImg})` }}
+      style={{ backgroundImage: `url(${data?.user?.avatarUrl})` }}
     ></div>
   );
 };

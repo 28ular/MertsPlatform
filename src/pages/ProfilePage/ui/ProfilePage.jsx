@@ -1,141 +1,116 @@
-import cls from '../../../../src/pages/ProfilePage/styles/profile.module.scss'
-import {MdEdit} from "react-icons/md";
-import { Modal } from 'antd';
-import {useState} from "react";
-import { FaUser} from "react-icons/fa";
-import {RiTelegram2Line} from "react-icons/ri";
-import {FaPeopleGroup} from "react-icons/fa6";
-import {useProfile} from "../../../store/useProfile.js";
-import {ProfileBanner} from "./ProfileBanner.jsx";
-import {Nothing} from "../../../components/Nothing.jsx";
-
-
+import cls from "../../../../src/pages/ProfilePage/styles/profile.module.scss";
+import { FaUser } from "react-icons/fa";
+import { RiTelegram2Line } from "react-icons/ri";
+import { FaPeopleGroup } from "react-icons/fa6";
+import { ProfileBanner } from "./ProfileBanner.jsx";
+import { useMe } from "../../../hooks/useMe.js";
+import { toast } from "react-toastify";
+import { Loader } from "./../../../components/Loader";
+import { ProfileUserInfos } from "./ProfileUserInfos.jsx";
+import { ProfileTelegramConnect } from "./ProfileTelegramConnect.jsx";
+import { uploadAvatar } from "../../../../api/sendProfile.js";
+import { useState } from "react";
+import { Spin } from "antd";
 
 export const ProfilePage = () => {
 
-    const { userInfo } = useFindUser();
-    const { profileUrlImg, addProfileUrlImg, profileCustomInfo, customProfileCustomInfo} = useProfile();
+  const [loading, setLoading] = useState(false);
+  
+  const { data,  isPending , refetch} = useMe();
+  console.log(isPending);
 
-    const [modal1Open, setModal1Open] = useState(false);
+  const datas = data?.user;
+  console.log(datas);
 
+  if (isPending) return <Loader />;
 
-    const [name, setName] = useState("");
-    const [tg, setTg] = useState("");
-    const [group, setGroup] = useState("");
+  const avatar = datas?.avatarUrl
 
+  const apiOrigin = new URL(import.meta.env.VITE_API_URL).origin;
+  const avatarSrc = avatar?.startsWith("/") ? `${apiOrigin}${avatar}` : avatar || "";
 
-    const customProfileClick = () => {
-        if (name.trim() === '' || tg.trim() === '' || group.trim() === ''  ) {
-            const notyWa = toast.warning('Заполните все поля', {
-                autoClose: 2000,
-            })
-            return
-        }
-        customProfileCustomInfo(name, tg, group)
-        setName('')
-        setTg('')
-        setGroup('')
-        const notyS = toast.success('Успешно: Данные Изменены', {
-            autoClose: 1000,
-        })
-        setModal1Open(false);
-    }
-
-    return (
-        <>
-            <ProfileBanner/>
-            <div className={cls.profile}>
-                <div className={cls.profile_info}>
-
-                    <div className={cls.profile_infos} data-aos="fade-up">
-                        <div
-                            className={cls.profile_avatar}
-                            style={{     backgroundImage: `url(${profileUrlImg })` }}
-                        >
-                            <label className={cls.profiel_change}>
-                                выбрать фото
-                                <input type="file" accept="image/*" onChange={ (e) => {
-                                    const file = e.target.files[0];
-
-                                    const reader = new FileReader();
-
-                                    reader.onload = () => {
-                                        const base64 = reader.result;
-
-                                        addProfileUrlImg(base64);
-                                    };
-
-                                    reader.readAsDataURL(file);
-                                }} className={cls.file}/>
-                            </label>
-                        </div>
-                        <div className={cls.profile_statistic_info}>
-                            <div className={cls.profile_student}>
-                                Студент
-                            </div>
-                            <h1>{userInfo?.login}</h1>
-                        </div>
-                        <div className={cls.profile_custom}>
-                            <div className={cls.profile_custom_infos}>
-                                <button onClick={() => setModal1Open(true)}><MdEdit /> Редактировать профиль</button>
-                                <div className={cls.custom_info}>
-                                    <div className={cls.custom_info_content}>
-                                        <FaUser />
-                                        {profileCustomInfo?.name}
-                                    </div>
-                                    <div className={cls.custom_info_content}>
-                                        <RiTelegram2Line/>
-                                        @ {profileCustomInfo?.tg}
-                                    </div>
-                                    <div className={cls.custom_info_content}>
-                                        <FaPeopleGroup />
-                                        {profileCustomInfo?.group}
-                                    </div>
-                                </div>
-                                {
-                                  modal1Open && (
-                                      <div>
-                                          <Modal
-                                              title="Редактирование Профиля"
-                                              style={{ top: 115, backgroundColor: "red" }}
-                                              open={modal1Open}
-                                              rootClassName={cls.modal_editsss}
-                                              onOk={customProfileClick}
-                                              onCancel={() => setModal1Open(false)}
-                                          >
-                                              <div className={cls.modal_edit_inputs}>
-                                                  <input
-                                                      type="text"
-                                                      value={name}
-                                                      onChange={e => setName(e.target.value)}
-                                                      placeholder="username"
-                                                      maxLength="11"
-                                                  />
-                                                  <input
-                                                      type="text"
-                                                      value={tg}
-                                                      onChange={e => setTg(e.target.value)}
-                                                      placeholder="@tg"
-                                                      maxLength="11"
-                                                  />
-                                                  <input
-                                                      type="text"
-                                                      value={group}
-                                                      onChange={e => setGroup(e.target.value)}
-                                                      placeholder="group num..."
-                                                      maxLength="11"
-                                                  />
-                                              </div>
-                                          </Modal>
-                                      </div>
-                                    )
+   const stylesFn = {
+    indicator: {
+      color: "#8b5cf6",
+    },
+  };
+  return (
+    <>
+      <ProfileBanner  banner={datas?.bannerUrl} refetch={refetch} />
+      <div className={cls.profile}>
+        <div className={cls.profile_info}>
+          <div className={cls.profile_infos} data-aos="fade-up">
+            <div
+              className={cls.profile_avatar}
+              style={{ backgroundImage: `url(${avatarSrc})` }}
+            >
+              <label className={cls.profiel_change}>
+                { loading ? <Spin
+                        styles={stylesFn}
+                        style={{ marginLeft: "10px" }}
+                        size="small"
+                      /> : 'Выбрать фото' }
+                <input
+                  type="file"
+                  accept="image/*"
+                  onChange={async (e) => {
+                                const file = e.target.files[0];
+                                if (!file) return;
+                                setLoading(true);
+                                try {
+                                  await uploadAvatar(file);
+                                  await refetch?.();
+                                } finally {
+                                  setLoading(false);
                                 }
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                              }}
+                  className={cls.file}
+                />
+              </label>
             </div>
-            <Nothing />
-        </>
-    )
-}
+            <div className={cls.profile_statistic_info}>
+              <div
+                onClick={() =>
+                  toast.success("Это ваш статус!", { autoClose: 1000 })
+                }
+                className={cls.profile_student}
+              >
+                Студент
+              </div>
+            </div>
+            <div className={cls.profile_custom}>
+              <div className={cls.profile_custom_infos}>
+                <div className={cls.custom_info}>
+                  <div className={cls.custom_info_content}>
+                    <FaUser />
+                    {datas?.name || "ничего"}
+                  </div>
+                  <div className={cls.custom_info_content}>
+                    <RiTelegram2Line />
+                    {data?.telegramUsername
+                      ? data.telegramUsername
+                      : "не привязон"}
+                  </div>
+                  <div className={cls.custom_info_content}>
+                    <FaPeopleGroup />
+                    {datas?.groupId
+                      ? String(datas.groupId).length >= 7
+                        ? `${String(datas.groupId).slice(0, 6)}...`
+                        : datas.groupId
+                      : "ничего"}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <ProfileUserInfos data={datas} />
+       <ProfileTelegramConnect
+        isConnected={Boolean(data?.isTelegramConnected ?? datas?.isTelegramConnected)}
+        telegramUsername={data?.telegramUsername ?? datas?.telegramUsername}
+        refetch={refetch}
+      />
+    </>
+  );
+};

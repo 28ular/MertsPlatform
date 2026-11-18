@@ -1,20 +1,20 @@
 import cls from "../styles/about.module.scss";
 import { FiUser } from "react-icons/fi";
 import { FaArrowRight, FaTelegramPlane } from "react-icons/fa";
-import { useHistory } from "../../../store/historyStore.js";
+// import { useHistory } from "../../../store/historyStore.js";
 import imgs from "../../../images/imgss.webp";
 
 
 export const AboutMeHeader = () => {
-  const { toggleHistory } = useHistory();
+  // const { toggleHistory } = useHistory();
 
-  const goToHistory = () => {
-    document.getElementById("history").scrollIntoView({ behavior: "smooth" });
-    toggleHistory(true);
-    setTimeout(() => {
-      toggleHistory(false);
-    }, 2000);
-  };
+  // const goToHistory = () => {
+  //   document.getElementById("history").scrollIntoView({ behavior: "smooth" });
+  //   toggleHistory(true);
+  //   setTimeout(() => {
+  //     toggleHistory(false);
+  //   }, 2000);
+  // };
 
 
 

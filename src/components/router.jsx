@@ -10,6 +10,8 @@ import { TasksList } from "../pages/TasksPge/ui/TasksList.jsx";
 import { AboutMeList } from "../pages/AboutMePage/ui/AboutMeList.jsx";
 import { Nothing } from "./Nothing.jsx";
 import { EventsList } from "../pages/EventsPage/ui/EventsList.jsx";
+import { ProfileAchievementsDetail } from "../pages/AchievementsPage/ui/ProfileAchievementsDetail.jsx";
+import { AchievementsPage } from "../pages/AchievementsPage/ui/AchievementsPage.jsx";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -26,10 +28,7 @@ export const router = createBrowserRouter([
       {
         element: <ProtectedRoute />,
         children: [
-          {
-            path: "events",
-            element: <EventsList />,
-          },
+         
           {
             path: "main",
             element: <MainList />,
@@ -54,13 +53,25 @@ export const router = createBrowserRouter([
             path: "about",
             element: <AboutMeList />,
           },
+          {
+            path: "profile/:id",
+            element: <ProfileAchievementsDetail/>
+          },
+          {
+            path: "achievements",
+            element: <AchievementsPage />,
+          },
         ],
       },
     ],
   },
-
   {
-    path: "*",
-    element: <NotFound />,
+    element: <ProtectedRoute />,
+    children: [
+      {
+        path: "*",
+        element: <NotFound />,
+      },
+    ],
   },
 ]);

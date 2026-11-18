@@ -3,6 +3,7 @@ import cls from "../styles/lessons.module.scss";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import { Loader } from "../../../components/Loader.jsx";
 import { useLess } from "../../../hooks/useLess.js";
+import { LessonsEmpty } from "./LessonsEmpty.jsx";
 
 export const LessonVideos = () => {
   // const group = groups[userInfo.groupId];
@@ -11,14 +12,14 @@ export const LessonVideos = () => {
 
   const [index, setIndex] = useState(0);
 
-  const { data: lessons = [], isPending, isError,  } = useLess();
+  const { data: lessons = [], isPending, isError, refetch } = useLess();
 
   if (isPending) return <Loader />;
 
   const currentLesson = lessons[index];
 
-  if (lessons.length === 0) return <p>нету уроков</p>;
   if (isError) return <p>Упс ошибка!</p>
+  if (lessons.length === 0) return <LessonsEmpty onRetry={refetch} />;
 
 
   return (

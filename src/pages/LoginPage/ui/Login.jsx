@@ -27,7 +27,6 @@ export const Login = () => {
       return;
     }
 
-
     setLoading(true);
     setErrorText("");
 
@@ -35,44 +34,57 @@ export const Login = () => {
       await loginUser(login, passwords);
       navigate("/main");
     } catch (e) {
-      const ern = toast.error(e.message)
-      setPasswords('')
-      setLogin('')
+      const ern = toast.error(e.message);
+      setPasswords("");
+      setLogin("");
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
   };
 
   const stylesFn = {
     indicator: {
-      color: "#8b5cf6", 
+      color: "#8b5cf6",
     },
   };
 
-  const [loginRegister, setLoginRegister] = useState('');
-  const [passRegister, setPassRegister] = useState('');
-  const [numberGroup, setNumberGroup] = useState('');
+  const [loginRegister, setLoginRegister] = useState("");
+  const [passRegister, setPassRegister] = useState("");
+  const [numberGroup, setNumberGroup] = useState("");
 
-
-  const HandleChangeRegister = async(e) => {
+  const HandleChangeRegister = async (e) => {
     e.preventDefault();
 
-     if (!loginRegister.trim() || !passRegister.trim() || !numberGroup.trim()) {
+    if (!loginRegister.trim() || !passRegister.trim() || !numberGroup.trim()) {
       toast.warning("Пожалуйста, заполните все поля");
       return;
     }
 
-    setLoading(true)
-    try {
-      await registerUser(loginRegister,passRegister,numberGroup)
-      navigate('/main')
-    }catch(e) {
-     const nots =  toast.error(e.message)
-    }finally {
-      setLoading(false);
+    if (loginRegister.trim().length < 3) {
+      toast.warning("Логин должен быть мнимум 3 символа", { autoClose: 1500 });
+      return;
     }
 
-  }
+    if (passRegister.trim().length < 8) {
+      toast.warning("Пароль должен быть минимум 8 символов", {
+        autoClose: 1500,
+      });
+      return;
+    }
+
+    setLoading(true);
+    try {
+      await registerUser(loginRegister, passRegister, numberGroup);
+      setLoginRegister("");
+      setPassRegister("");
+      setNumberGroup("");
+      navigate("/main");
+    } catch (e) {
+      toast.error(e.message);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <>
@@ -96,7 +108,7 @@ export const Login = () => {
                 data-aos={"zoom-in"}
                 data-aos-duration="600"
               >
-                Добро пожаловать 
+                Добро пожаловать
               </h1>
               <p
                 data-aos="fade-up"
@@ -160,8 +172,15 @@ export const Login = () => {
           ) : (
             <div className={cls.register_item}>
               <h1 data-aos={"zoom-in"} className={cls.reds}>
-                Давайте зарегистрируемся 👋
+                Давайте зарегистрируемся
               </h1>
+              <p
+                data-aos="fade-up"
+                data-aos-delay="100"
+                data-aos-duration="600"
+              >
+                Создайте свой аккаунт
+              </p>
               <div className={cls.reg_items}>
                 <input
                   data-aos="fade-down"
@@ -172,15 +191,26 @@ export const Login = () => {
                   value={loginRegister}
                   onChange={(e) => setLoginRegister(e.target.value)}
                 />
-                <input
-                  data-aos="fade-down"
-                  data-aos-delay="300"
-                  data-aos-duration="500"
-                  type="text"
-                  placeholder="Пароль"
-                  value={passRegister}
-                  onChange={(e) => setPassRegister(e.target.value)}
-                />
+                <div className={cls.pass_input}>
+                  <input
+                    data-aos="fade-down"
+                    data-aos-delay="300"
+                    data-aos-duration="500"
+                    type={togglePassword ? "text" : "password"}
+                    placeholder="Пароль"
+                    value={passRegister}
+                    onChange={(e) => setPassRegister(e.target.value)}
+                  />
+                  <div
+                    className={cls.pass_toggle}
+                    data-aos="fade-down"
+                    data-aos-delay="300"
+                    data-aos-duration="500"
+                    onClick={() => setTogglePassword((prev) => !prev)}
+                  >
+                    {togglePassword ? <FaEyeSlash /> : <IoEyeSharp />}
+                  </div>
+                </div>
                 <input
                   data-aos="fade-down"
                   data-aos-delay="400"
@@ -199,16 +229,17 @@ export const Login = () => {
                   type="button"
                   disabled={loading}
                 >
-                  Зарегистрирвоаться 
-                      {loading && (
+                  {loading ? (
                     <>
-                      ...
+                      Регистрация...
                       <Spin
                         styles={stylesFn}
                         style={{ marginLeft: "10px" }}
                         size="small"
                       />
                     </>
+                  ) : (
+                    "Зарегистрироваться"
                   )}
                 </button>
               </div>
