@@ -7,6 +7,7 @@ import { MainList } from "../pages/MainPage/ui/MainList.jsx";
 import { ProfilePage } from "../pages/ProfilePage/ui/ProfilePage.jsx";
 import { LessonsPage } from "../pages/LessonsPage/ui/LessonsPage.jsx";
 import { TasksList } from "../pages/TasksPge/ui/TasksList.jsx";
+import { TaskDetailPage } from "../pages/TasksPge/ui/TaskDetailPage.jsx";
 import { AboutMeList } from "../pages/AboutMePage/ui/AboutMeList.jsx";
 import { Nothing } from "./Nothing.jsx";
 import { EventsList } from "../pages/EventsPage/ui/EventsList.jsx";
@@ -44,6 +45,10 @@ export const router = createBrowserRouter([
           {
             path: "tasks",
             element: <TasksList />,
+          },
+          {
+            path: "tasks/:id",
+            element: <TaskDetailPage />,
           },
           {
             path: "profile",

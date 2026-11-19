@@ -12,6 +12,8 @@ export const Layout = () => {
         <div
           style={{
             marginLeft: "80px",
+            flex: 1,
+            minWidth: 0,
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
