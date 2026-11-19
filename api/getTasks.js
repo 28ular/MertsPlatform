@@ -16,7 +16,8 @@ export const getTaskById = async (id) => {
 };
 
 export const submitTask = async (id, { solutionLink, comment }) => {
-  const { data } = await api.post(`/tasks/${id}/submissions`, {
+  const { data } = await api.post(`/submissions`, {
+    taskId: id,
     solutionLink,
     comment: comment || undefined,
   });

@@ -21,12 +21,12 @@ export const uploadBanner = async (file) => {
 };
 
 export const connectTelegram = async () => {
-  const { data } = await api.post("/me/telegram/connect");
+  const { data } = await api.post("/users/me/telegram/connect");
   return data;
 };
 
 export const disconnectTelegram = async () => {
-  const { data } = await api.delete("/me/telegram/disconnect");
+  const { data } = await api.delete("/users/me/telegram/disconnect");
   return data;
 };
 
