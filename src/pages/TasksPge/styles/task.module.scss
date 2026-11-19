@@ -853,6 +853,53 @@
 
 /* ==================== АДАПТИВ ==================== */
 
+@media (min-width: 1600px) {
+  .task,
+  .detail_page {
+    max-width: 1440px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media (max-width: 1366px) {
+  .task,
+  .detail_page {
+    padding: 0 24px;
+  }
+
+  .TaskS .task_card {
+    padding: 16px 18px;
+    gap: 16px;
+  }
+
+  .detail_grid {
+    gap: 18px;
+  }
+
+  .detail_hero_icon {
+    width: 112px;
+    height: 112px;
+    font-size: 46px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .detail_grid {
+    grid-template-columns: 1.4fr 1fr;
+  }
+
+  .TaskS .task_card {
+    grid-template-columns: 64px 1fr auto;
+  }
+
+  .TaskS .card_icon_box {
+    width: 58px;
+    height: 58px;
+    font-size: 26px;
+  }
+}
+
 @media (max-width: 1024px) {
   .detail_grid {
     grid-template-columns: 1fr;
